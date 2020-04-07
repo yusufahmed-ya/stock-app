@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'stock-app';
-  subHeading = 'Your trusty ticker app';
+  title = 'Nebula';
+  subHeading = 'Your trusty ticker app that gives you whatever stocks you need';
 }
