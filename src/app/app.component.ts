@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Nebula';
-  subHeading = 'Your trusty ticker app that gives you whatever stocks you need';
+
 }
