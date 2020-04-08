@@ -1,0 +1,5 @@
+@import 'colours';
+
+.title {
+    border-bottom: 5px solid darken($color: $primary-green, $amount: 10);
+}
