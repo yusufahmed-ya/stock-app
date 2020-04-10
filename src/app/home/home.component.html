@@ -1,16 +1,24 @@
 <app-title title="Home"></app-title>
 
-<app-spinner [loading]="false"></app-spinner>
+<app-spinner [loading]="true"></app-spinner>
 
 <div class="clr-row">
-    <div class="clr-col-lg-6 clr-col-12">
+    <div class="clr-col-lg-3">
         <div class="card">
             <div class="card-header">
-                Header
+                <div class="card-title">
+                    Microsoft <clr-icon shape="eye" class="tech-titans-card-favourites">
+                    </clr-icon>
+                </div>
+                <div class="card-ticker">
+                    NASDAQ: MSFT <div class="card-price">£120</div>
+                    <clr-icon class="growth-icon" shape="arrow"></clr-icon>
+                    <div class="card-positive-text">20%</div>
+                </div>
             </div>
             <div class="card-block">
                 <div class="card-title">
-                    Block
+
                 </div>
                 <div class="card-text">
                     ...
@@ -20,13 +28,13 @@
                 <button class="btn btn-sm btn-link">
                     More
                 </button>
-                <button class="btn btn-sm btn-link">
+                <button class="btn btn-sm btn-link ">
                     Brief information
 
                 </button>
                 <clr-dropdown>
                     <button class="btn btn-outline-primary" clrDropdownTrigger>
-                        Dropdown
+                        Time-Frame
                         <clr-icon shape="caret down"></clr-icon>
                     </button>
                     <clr-dropdown-menu clrPosition="bottom" *clrIfOpen>

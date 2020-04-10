@@ -1,0 +1,40 @@
+@import 'colours';
+
+.card {
+    width: 400px;
+    border-left: 5px solid $primary-blue;
+
+
+    .card-ticker {
+        font-size: 15px;
+        margin-top: -10px;
+
+        clr-icon[shape="arrow"] {
+            color: $positive;
+        }
+
+        clr-icon[shape="arrow down"] {
+            color: $negative;
+        }
+
+        .growth-icon {
+            margin-left: 10px;
+        }
+
+        .card-positive-text {
+            display: inline-block;
+            color: $positive;
+        }
+    }
+
+    .tech-titans-card-favourites {
+        margin-left: 250px;
+    }
+
+    .card-price {
+        display: inline-block;
+        color: $positive;
+        margin-right: -7.5px;
+    }
+
+}
