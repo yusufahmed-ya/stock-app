@@ -5,7 +5,7 @@
 
 <app-spinner [loading]="loading"></app-spinner>
 
-<clr-datagrid *ngIf="data">
+<clr-datagrid *ngIf="stockPrices">
     <clr-dg-column>Date</clr-dg-column>
     <clr-dg-column>Open</clr-dg-column>
     <clr-dg-column>High</clr-dg-column>
@@ -14,14 +14,15 @@
     <clr-dg-column>Volume</clr-dg-column>
 
 
-    <clr-dg-row>
-        <clr-dg-cell></clr-dg-cell>
-        <clr-dg-cell></clr-dg-cell>
-        <clr-dg-cell></clr-dg-cell>
-        <clr-dg-cell></clr-dg-cell>
+    <clr-dg-row *ngFor="let sp of stockPrices">
+        <clr-dg-cell>{{sp.date | date:'mediumDate'}} {{sp.date | date:'shortTime'}}</clr-dg-cell>
+        <clr-dg-cell>{{sp.open | number}}</clr-dg-cell>
+        <clr-dg-cell>{{sp.high | number}}</clr-dg-cell>
+        <clr-dg-cell>{{sp.low | number}}</clr-dg-cell>
+        <clr-dg-cell>{{sp.close | number}}</clr-dg-cell>
+        <clr-dg-cell>{{sp.volume | number}}</clr-dg-cell>
+
     </clr-dg-row>
 
     <clr-dg-footer></clr-dg-footer>
 </clr-datagrid>
-
-<pre *ngIf="data">{{data | json}}</pre>

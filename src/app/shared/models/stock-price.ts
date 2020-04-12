@@ -6,3 +6,5 @@ export interface StockPrice {
     close: number;
     volume: number;
 }
+
+
