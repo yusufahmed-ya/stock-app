@@ -1,3 +1,5 @@
+@import 'colours';
+
 .clr-form-horizontal .clr-form-control {
     flex-direction: column !important;
 }
@@ -11,4 +13,9 @@ form {
         width: 500px;
         margin-left: -280px;
     }
+}
+
+.header-icon {
+    margin-left: 5px;
+    color: $primary-blue;
 }

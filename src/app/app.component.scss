@@ -1,4 +1,8 @@
-@import 'colours.scss';
+@import 'colours';
+
+.header {
+    background-color: $primary-blue;
+}
 
 .title {
     font-size: 30px;

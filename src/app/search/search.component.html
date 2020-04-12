@@ -7,15 +7,23 @@
 
 <clr-datagrid *ngIf="stockPrices">
     <clr-dg-column>
-        <clr-icon shape="calendar"></clr-icon> Date
+        <clr-icon shape="calendar" class="header-icon"></clr-icon> Date
     </clr-dg-column>
     <clr-dg-column>
-        <clr-icon shape="folder-open"></clr-icon> Open
+        <clr-icon shape="folder-open" class="header-icon"></clr-icon> Open
     </clr-dg-column>
-    <clr-dg-column>High</clr-dg-column>
-    <clr-dg-column>Low</clr-dg-column>
-    <clr-dg-column>Close</clr-dg-column>
-    <clr-dg-column>Volume</clr-dg-column>
+    <clr-dg-column>
+        <clr-icon shape="arrow" class="header-icon"></clr-icon>High
+    </clr-dg-column>
+    <clr-dg-column>
+        <clr-icon shape="arrow down" class="header-icon"></clr-icon>Low
+    </clr-dg-column>
+    <clr-dg-column>
+        <clr-icon shape="times" class="header-icon"></clr-icon> Close
+    </clr-dg-column>
+    <clr-dg-column>
+        <clr-icon shape="container-volume" class="header-icon"></clr-icon> Volume
+    </clr-dg-column>
 
 
     <clr-dg-row *ngFor="let sp of stockPrices">
