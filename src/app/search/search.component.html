@@ -1,5 +1,27 @@
 <app-title title="Search - {{searchInput}}"></app-title>
 <form clrForm [formGroup]="searchForm">
-    <input clrInput placeholder="Search for a stock" type="text" formControlName="input"
-           (change)="onChangeSearchInput($event)" />
+    <input clrInput placeholder="Ticker" type="text" formControlName="input" (change)="onChangeSearchInput($event)" />
 </form>
+
+<app-spinner [loading]="loading"></app-spinner>
+
+<clr-datagrid *ngIf="data">
+    <clr-dg-column>Date</clr-dg-column>
+    <clr-dg-column>Open</clr-dg-column>
+    <clr-dg-column>High</clr-dg-column>
+    <clr-dg-column>Low</clr-dg-column>
+    <clr-dg-column>Close</clr-dg-column>
+    <clr-dg-column>Volume</clr-dg-column>
+
+
+    <clr-dg-row>
+        <clr-dg-cell></clr-dg-cell>
+        <clr-dg-cell></clr-dg-cell>
+        <clr-dg-cell></clr-dg-cell>
+        <clr-dg-cell></clr-dg-cell>
+    </clr-dg-row>
+
+    <clr-dg-footer></clr-dg-footer>
+</clr-datagrid>
+
+<pre *ngIf="data">{{data | json}}</pre>

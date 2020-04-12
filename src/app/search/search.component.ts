@@ -13,7 +13,8 @@ export class SearchComponent implements OnInit {
 
   searchForm: FormGroup;
   searchInput = '';
-
+  loading = false;
+  data;
   constructor(private alphaVantageSvc: AlphaVantageService) {
 
   }
@@ -25,12 +26,14 @@ export class SearchComponent implements OnInit {
   }
 
   onChangeSearchInput(e) {
+    this.loading = true;
     this.searchInput = e.currentTarget.value;
     this.alphaVantageSvc
       .getInstruments(this.searchInput)
       .pipe(
         map(res => {
-          console.log(res);
+          this.data = res;
+          this.loading = false;
         }))
       .subscribe();
   }
