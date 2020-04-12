@@ -28,8 +28,9 @@ export class SearchComponent implements OnInit {
   }
 
   onChangeSearchInput(e) {
-    this.loading = true;
+    this.stockPrices = null;
     this.searchInput = e.currentTarget.value;
+    this.loading = true;
     this.alphaVantageSvc
       .getInstruments(this.searchInput)
       .pipe(
@@ -44,24 +45,26 @@ export class SearchComponent implements OnInit {
 
     const res = new Array<StockPrice>();
 
-    const prices = data['Time Series (Daily)'];
+    if (data) {
+      const prices = data['Time Series (Daily)'];
 
-    for (const [key, value] of Object.entries(prices)) {
-      const date = key;
-      const open = value['1. open'];
-      const high = value['2. high'];
-      const low = value['3. low'];
-      const close = value['4. close'];
-      const volume = value['5. volume'];
+      for (const [key, value] of Object.entries(prices)) {
+        const date = key;
+        const open = value['1. open'];
+        const high = value['2. high'];
+        const low = value['3. low'];
+        const close = value['4. close'];
+        const volume = value['5. volume'];
 
-      res.push({
-        date: new Date(date),
-        open,
-        high,
-        low,
-        close,
-        volume
-      } as StockPrice);
+        res.push({
+          date: new Date(date),
+          open,
+          high,
+          low,
+          close,
+          volume
+        } as StockPrice);
+      }
     }
     return res;
   }
