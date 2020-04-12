@@ -1,4 +1,4 @@
-<app-title title="Search - {{searchInput}}"></app-title>
+<app-title title="Search - {{ searchInput}}"></app-title>
 <form clrForm [formGroup]="searchForm">
     <input clrInput placeholder="Ticker" type="text" formControlName="input" (change)="onChangeSearchInput($event)" />
 </form>
@@ -6,8 +6,12 @@
 <app-spinner [loading]="loading"></app-spinner>
 
 <clr-datagrid *ngIf="stockPrices">
-    <clr-dg-column>Date</clr-dg-column>
-    <clr-dg-column>Open</clr-dg-column>
+    <clr-dg-column>
+        <clr-icon shape="calendar"></clr-icon> Date
+    </clr-dg-column>
+    <clr-dg-column>
+        <clr-icon shape="folder-open"></clr-icon> Open
+    </clr-dg-column>
     <clr-dg-column>High</clr-dg-column>
     <clr-dg-column>Low</clr-dg-column>
     <clr-dg-column>Close</clr-dg-column>
@@ -24,5 +28,5 @@
 
     </clr-dg-row>
 
-    <clr-dg-footer></clr-dg-footer>
+    <clr-dg-footer>{{stockPrices.length}} Prices</clr-dg-footer>
 </clr-datagrid>
