@@ -2,9 +2,7 @@
 <form clrForm [formGroup]="searchForm">
     <input clrInput placeholder="Ticker" type="text" formControlName="input" (change)="onChangeSearchInput($event)" />
 </form>
-<div class="tile">
-    MSFT
-</div>
+<app-tile title="Open" value="163" currency="$"></app-tile>
 <app-spinner [loading]="loading"></app-spinner>
 
 <clr-datagrid *ngIf="stockPrices">

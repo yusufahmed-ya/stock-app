@@ -10,8 +10,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { SearchComponent } from './search/search.component';
-import { SpinnerComponent } from './shared/spinner/spinner.component';
-import { TitleComponent } from './shared/title/title.component';
+import { SpinnerComponent } from './shared/components/spinner/spinner.component';
+import { TitleComponent } from './shared/components/title/title.component';
+import { TileComponent } from './shared/components/tile/tile.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { TitleComponent } from './shared/title/title.component';
     HomeComponent,
     TitleComponent,
     SpinnerComponent,
-    SearchComponent
+    SearchComponent,
+    TileComponent
   ],
   imports: [
     BrowserModule,
