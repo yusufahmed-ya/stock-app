@@ -1,5 +1,5 @@
 <app-title title="Search - {{ searchInput}}"></app-title>
-<form clrForm [formGroup]="searchForm">
+<form clrForm [formGroup]="searchForm" class="search-tickers">
     <input clrInput placeholder="Ticker" type="text" formControlName="input" (change)="onChangeSearchInput($event)" />
 </form>
 
@@ -14,7 +14,12 @@
     <app-tile title="Low" [value]="stockPrices[0].low" currency="$"></app-tile>
     <app-tile title="Close" [value]="stockPrices[0].close" currency="$"></app-tile>
     <app-tile title="Volume" [value]="stockPrices[0].volume" currency=""></app-tile>
-
+    <form clrForm>
+        <clr-date-container>
+            <label>Search Date</label>
+            <input type="date" clrDate name="searchDate">
+        </clr-date-container>
+    </form>
     <clr-datagrid>
         <clr-dg-column>
             <clr-icon shape="calendar" class="header-icon"></clr-icon> Date
