@@ -2,44 +2,55 @@
 <form clrForm [formGroup]="searchForm">
     <input clrInput placeholder="Ticker" type="text" formControlName="input" (change)="onChangeSearchInput($event)" />
 </form>
-<app-tile title="Open" value="163" currency="$"></app-tile>
+
+
+
 <app-spinner [loading]="loading"></app-spinner>
 
-<clr-datagrid *ngIf="stockPrices">
-    <clr-dg-column>
-        <clr-icon shape="calendar" class="header-icon"></clr-icon> Date
-    </clr-dg-column>
-    <clr-dg-column>
-        <clr-icon shape="folder-open" class="header-icon"></clr-icon> Open
-    </clr-dg-column>
-    <clr-dg-column>
-        <clr-icon shape="arrow" class="header-icon"></clr-icon> High
-    </clr-dg-column>
-    <clr-dg-column>
-        <clr-icon shape="arrow down" class="header-icon"></clr-icon> Low
-    </clr-dg-column>
-    <clr-dg-column>
-        <clr-icon shape="times" class="header-icon"></clr-icon> Close
-    </clr-dg-column>
-    <clr-dg-column>
-        <clr-icon shape="container-volume" class="header-icon"></clr-icon> Volume
-    </clr-dg-column>
+<div *ngIf="stockPrices">
+
+    <app-tile title="Open" [value]="stockPrices[0].open" currency="$"></app-tile>
+    <app-tile title="High" [value]="stockPrices[0].high" currency="$"></app-tile>
+    <app-tile title="Low" [value]="stockPrices[0].low" currency="$"></app-tile>
+    <app-tile title="Close" [value]="stockPrices[0].close" currency="$"></app-tile>
+    <app-tile title="Volume" [value]="stockPrices[0].volume" currency=""></app-tile>
+
+    <clr-datagrid>
+        <clr-dg-column>
+            <clr-icon shape="calendar" class="header-icon"></clr-icon> Date
+        </clr-dg-column>
+        <clr-dg-column>
+            <clr-icon shape="folder-open" class="header-icon"></clr-icon> Open
+        </clr-dg-column>
+        <clr-dg-column>
+            <clr-icon shape="arrow" class="header-icon"></clr-icon> High
+        </clr-dg-column>
+        <clr-dg-column>
+            <clr-icon shape="arrow down" class="header-icon"></clr-icon> Low
+        </clr-dg-column>
+        <clr-dg-column>
+            <clr-icon shape="times" class="header-icon"></clr-icon> Close
+        </clr-dg-column>
+        <clr-dg-column>
+            <clr-icon shape="container-volume" class="header-icon"></clr-icon> Volume
+        </clr-dg-column>
 
 
-    <clr-dg-row *clrDgItems="let sp of stockPrices" [clrDgItem]="sp">
-        <clr-dg-cell>{{sp.date | date:'mediumDate'}} {{sp.date | date:'shortTime'}}</clr-dg-cell>
-        <clr-dg-cell>{{sp.open | number}}</clr-dg-cell>
-        <clr-dg-cell>{{sp.high | number}}</clr-dg-cell>
-        <clr-dg-cell>{{sp.low | number}}</clr-dg-cell>
-        <clr-dg-cell>{{sp.close | number}}</clr-dg-cell>
-        <clr-dg-cell>{{sp.volume | number}}</clr-dg-cell>
+        <clr-dg-row *clrDgItems="let sp of stockPrices" [clrDgItem]="sp">
+            <clr-dg-cell>{{sp.date | date:'mediumDate'}} {{sp.date | date:'shortTime'}}</clr-dg-cell>
+            <clr-dg-cell>{{sp.open | number}}</clr-dg-cell>
+            <clr-dg-cell>{{sp.high | number}}</clr-dg-cell>
+            <clr-dg-cell>{{sp.low | number}}</clr-dg-cell>
+            <clr-dg-cell>{{sp.close | number}}</clr-dg-cell>
+            <clr-dg-cell>{{sp.volume | number}}</clr-dg-cell>
 
-    </clr-dg-row>
-    <clr-dg-footer>
-        <clr-dg-pagination #pagination [clrDgPageSize]="10">
-            <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Prices per page</clr-dg-page-size>
-            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-            of {{pagination.totalItems}} Prices
-        </clr-dg-pagination>
-    </clr-dg-footer>
-</clr-datagrid>
+        </clr-dg-row>
+        <clr-dg-footer>
+            <clr-dg-pagination #pagination [clrDgPageSize]="10">
+                <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Prices per page</clr-dg-page-size>
+                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                of {{pagination.totalItems}} Prices
+            </clr-dg-pagination>
+        </clr-dg-footer>
+    </clr-datagrid>
+</div>
