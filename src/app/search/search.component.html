@@ -9,11 +9,11 @@
 
 <div *ngIf="stockPrices">
 
-    <app-tile title="Open" [value]="stockPrices[0].open" currency="$"></app-tile>
-    <app-tile title="High" [value]="stockPrices[0].high" currency="$"></app-tile>
-    <app-tile title="Low" [value]="stockPrices[0].low" currency="$"></app-tile>
-    <app-tile title="Close" [value]="stockPrices[0].close" currency="$"></app-tile>
-    <app-tile title="Volume" [value]="stockPrices[0].volume" currency=""></app-tile>
+    <app-tile title="Open" [value]="stockPrices[0].open" currency="$" colourClass="brand-blue-two"></app-tile>
+    <app-tile title="High" [value]="stockPrices[0].high" currency="$" colourClass="brand-blue-three"></app-tile>
+    <app-tile title="Low" [value]="stockPrices[0].low" currency="$" colourClass="brand-blue-four"></app-tile>
+    <app-tile title="Close" [value]="stockPrices[0].close" currency="$" colourClass="brand-green-two"></app-tile>
+    <app-tile title="Volume" [value]="stockPrices[0].volume" currency="" colourClass="brand-green-three"></app-tile>
     <form clrForm>
         <clr-date-container>
             <label>Search Date</label>
