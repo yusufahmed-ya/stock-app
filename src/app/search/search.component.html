@@ -1,6 +1,9 @@
 <app-title title="Search - {{ searchInput}}"></app-title>
 <form clrForm [formGroup]="searchForm" class="search-tickers">
-    <input clrInput placeholder="Ticker" type="text" formControlName="input" (change)="onChangeSearchInput($event)" />
+    <input clrInput placeholder="Ticker" type="text" formControlName="pricesCtrl"
+           (change)="onChangeSearchInput($event)" />
+    <input clrInput placeholder="Company Name" type="text" formControlName="companiesCtrl "
+           (change)="onChangeSearchCompanies($event)" />
 </form>
 
 

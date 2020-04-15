@@ -23,7 +23,8 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchForm = new FormGroup({
-      input: new FormControl('')
+      pricesCtrl: new FormControl(''),
+      companiesCtrl: new FormControl('')
     });
   }
 
@@ -48,24 +49,30 @@ export class SearchComponent implements OnInit {
     if (data) {
       const prices = data['Time Series (Daily)'];
 
-      for (const [key, value] of Object.entries(prices)) {
-        const date = key;
-        const open = value['1. open'];
-        const high = value['2. high'];
-        const low = value['3. low'];
-        const close = value['4. close'];
-        const volume = value['5. volume'];
+      if (prices) {
+        for (const [key, value] of Object.entries(prices)) {
+          const date = key;
+          const open = value['1. open'];
+          const high = value['2. high'];
+          const low = value['3. low'];
+          const close = value['4. close'];
+          const volume = value['5. volume'];
 
-        res.push({
-          date: new Date(date),
-          open,
-          high,
-          low,
-          close,
-          volume
-        } as StockPrice);
+          res.push({
+            date: new Date(date),
+            open,
+            high,
+            low,
+            close,
+            volume
+          } as StockPrice);
+        }
       }
     }
     return res;
+  }
+
+  onChangeSearchCompanies(event) {
+
   }
 }
