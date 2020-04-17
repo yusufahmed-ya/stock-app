@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { map } from 'rxjs/operators';
+
+import { Company } from '../shared/models/company';
+import { AlphaVantageService } from '../shared/services/alpha-vantage.service';
 
 @Component({
   selector: 'app-home',
@@ -7,11 +12,65 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
-  loading = true;
+  searchForm: FormGroup;
+  loading = false;
+  companies: Company[];
+  searchCompanies = '';
+
+  constructor(private alphaVantageSvc: AlphaVantageService) {
+
+  }
 
   ngOnInit(): void {
-    this.loading = false;
+    this.searchForm = new FormGroup({
+      companiesCtrl: new FormControl('')
+    });
+  }
+
+  onChangeSearchCompanies(event) {
+    this.companies = null;
+    this.searchCompanies = event.currentTarget.value;
+    this.loading = true;
+    this.alphaVantageSvc
+      .getCompanies(this.searchCompanies)
+      .pipe(
+        map(res => {
+          this.companies = this.mapCompanies(res);
+          this.loading = false;
+        }))
+      .subscribe();
+  }
+
+  mapCompanies(data: any): Company[] {
+
+    const res = new Array<Company>();
+
+    if (data) {
+      const companies = data.bestMatches;
+
+      if (companies) {
+        companies.forEach(c => {
+          const symbol = c['1. symbol'];
+          const name = c['2. name'];
+          const type = c['3. type'];
+          const region = c['4. region'];
+          const marketOpen = c['5. marketOpen'];
+          const marketClose = c['6. marketClose'];
+          const currency = c['7. currency'];
+
+          res.push({
+            symbol,
+            name,
+            type,
+            region,
+            marketOpen,
+            marketClose,
+            currency
+          } as Company);
+        });
+      }
+      return res;
+    }
   }
 
 }

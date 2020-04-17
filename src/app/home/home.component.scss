@@ -38,3 +38,24 @@
     }
 
 }
+
+.company-card {
+    border-left: 3px solid $primary-blue;
+    margin: 20px 0 20px 0;
+    padding: 20px;
+    background-color: lighten($color: grey, $amount: 70);
+    width: 400px;
+    display: inline-block;
+
+    .name {
+        font-size: 18px;
+    }
+
+    .symbol {
+        font-size: 10px;
+        display: inline-block;
+        color: $primary-green;
+    }
+
+    .region {}
+}
