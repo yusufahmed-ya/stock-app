@@ -15,18 +15,17 @@
             <div class="company-card">
                 <div class="name">
                     {{c.name}}
-                    <div class="symbol">
-                        {{c.symbol}}
-                    </div>
                 </div>
-                <div class="ty[e">
-                    {{c.type}}
+                <div class="symbol">
+                    {{c.symbol}}
                 </div>
-                <div class="region">
-                    {{c.region}}
+                <div class="type">
+                    {{c.type}} / {{c.region}} / {{c.currency}}
+
                 </div>
-                <div class="marketOpen">
-                    {{c.marketOpen}}
+
+                <div class="market-time">
+                    {{c.marketOpen}} - {{c.marketClose}} ({{c.timezone}})
                 </div>
             </div>
         </div>

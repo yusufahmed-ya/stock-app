@@ -56,7 +56,8 @@ export class HomeComponent implements OnInit {
           const region = c['4. region'];
           const marketOpen = c['5. marketOpen'];
           const marketClose = c['6. marketClose'];
-          const currency = c['7. currency'];
+          const timezone = c['7. timezone'];
+          const currency = c['8. currency'];
 
           res.push({
             symbol,
@@ -65,7 +66,8 @@ export class HomeComponent implements OnInit {
             region,
             marketOpen,
             marketClose,
-            currency
+            timezone,
+            currency,
           } as Company);
         });
       }
