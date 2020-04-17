@@ -1,0 +1,17 @@
+<div *ngIf="company">
+    <div class="company-card">
+        <div class="name">
+            {{company.name}}
+        </div>
+        <div class="symbol">
+            {{company.symbol}}
+        </div>
+        <div class="type">
+            {{company.type}} / {{company.region}} / {{company.currency}}
+        </div>
+
+        <div class="market-time">
+            {{company.marketOpen}} - {{company.marketClose}} ({{company.timezone}})
+        </div>
+    </div>
+</div>

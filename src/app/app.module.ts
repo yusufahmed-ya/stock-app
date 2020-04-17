@@ -13,6 +13,7 @@ import { SearchComponent } from './search/search.component';
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 import { TitleComponent } from './shared/components/title/title.component';
 import { TileComponent } from './shared/components/tile/tile.component';
+import { CompanyCardComponent } from './shared/components/company-card/company-card.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { TileComponent } from './shared/components/tile/tile.component';
     TitleComponent,
     SpinnerComponent,
     SearchComponent,
-    TileComponent
+    TileComponent,
+    CompanyCardComponent
   ],
   imports: [
     BrowserModule,

@@ -12,22 +12,7 @@
     <div *ngIf="companies">
 
         <div *ngFor="let c of companies">
-            <div class="company-card">
-                <div class="name">
-                    {{c.name}}
-                </div>
-                <div class="symbol">
-                    {{c.symbol}}
-                </div>
-                <div class="type">
-                    {{c.type}} / {{c.region}} / {{c.currency}}
-
-                </div>
-
-                <div class="market-time">
-                    {{c.marketOpen}} - {{c.marketClose}} ({{c.timezone}})
-                </div>
-            </div>
+            <app-company-card [company]="c"></app-company-card>
         </div>
 
     </div>

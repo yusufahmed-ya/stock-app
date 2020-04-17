@@ -1,0 +1,34 @@
+@import 'colours';
+
+.company-card {
+    border-left: 3px solid $primary-blue;
+    margin: 20px 0 20px 0;
+    padding: 20px;
+    background-color: lighten($color: grey, $amount: 70);
+    width: 400px;
+
+    .name {
+        font-size: 18px;
+        display: inline-block;
+        width: 80%;
+    }
+
+    .type {
+        margin-bottom: 5px;
+        font-size: 13px;
+    }
+
+    .market-time {
+        font-size: 11px;
+        text-align: right;
+    }
+
+    .symbol {
+        font-size: 10px;
+        display: inline-block;
+        font-weight: bolder;
+        text-align: right;
+        width: 20%;
+        color: $brand-blue-two;
+    }
+}
