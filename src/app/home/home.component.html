@@ -1,18 +1,23 @@
 <app-title title="Home"></app-title>
-<div class="search-companies">
 
+<div class="search-companies">
     <form clrForm [formGroup]="searchForm" class="search-tickers">
-        <input clrInput placeholder="Company Name" type="text" formControlName="companiesCtrl"
-               (change)="onChangeSearchCompanies($event)" />
+        <clr-input-container>
+            <label>Search using company name</label>
+            <input clrInput type="text" formControlName="companiesCtrl" (change)="onChangeSearchCompanies($event)" />
+        </clr-input-container>
     </form>
 </div>
+
 <app-spinner [loading]="loading"></app-spinner>
 
 <div *ngIf="!loading">
     <div *ngIf="companies">
 
-        <div *ngFor="let c of companies">
-            <app-company-card [company]="c"></app-company-card>
+        <div class="clr-row">
+            <div *ngFor="let c of companies" class="clr-col-4">
+                <app-company-card [company]="c"></app-company-card>
+            </div>
         </div>
 
     </div>
