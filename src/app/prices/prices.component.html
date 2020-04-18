@@ -1,15 +1,28 @@
-<app-title title="Prices - {{symbol}}"></app-title>
+<app-title title="{{symbol}}"></app-title>
 
 <app-spinner [loading]="loading"></app-spinner>
 
 <div *ngIf="!loading">
     <div *ngIf="stockPrices && stockPrices.length > 0">
 
-        <app-tile title="Open" [value]="stockPrices[0].open" currency="$" colourClass="brand-blue-two"></app-tile>
-        <app-tile title="High" [value]="stockPrices[0].high" currency="$" colourClass="brand-blue-three"></app-tile>
-        <app-tile title="Low" [value]="stockPrices[0].low" currency="$" colourClass="brand-blue-four"></app-tile>
-        <app-tile title="Close" [value]="stockPrices[0].close" currency="$" colourClass="brand-green-two"></app-tile>
-        <app-tile title="Volume" [value]="stockPrices[0].volume" currency="" colourClass="brand-green-three"></app-tile>
+        <div class="clr-row">
+            <div class="clr-col">
+                <app-tile title="Open" [value]="stockPrices[0].open" currency="$" colourClass="brand-blue-two">
+                </app-tile>
+                <app-tile title="High" [value]="stockPrices[0].high" currency="$" colourClass="brand-blue-three">
+                </app-tile>
+                <app-tile title="Low" [value]="stockPrices[0].low" currency="$" colourClass="brand-blue-four">
+                </app-tile>
+                <app-tile title="Close" [value]="stockPrices[0].close" currency="$" colourClass="brand-green-two">
+                </app-tile>
+                <app-tile title="Volume" [value]="stockPrices[0].volume" currency="" colourClass="brand-green-three">
+                </app-tile>
+            </div>
+            <div class="clr-col">
+                chart goes in here
+            </div>
+
+        </div>
         <clr-datagrid>
             <clr-dg-column>
                 <clr-icon shape="calendar" class="header-icon"></clr-icon> Date
