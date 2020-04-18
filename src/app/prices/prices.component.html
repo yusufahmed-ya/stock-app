@@ -19,7 +19,7 @@
                 </app-tile>
             </div>
             <div class="clr-col-10">
-                <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions"
+                <highcharts-chart *ngIf="chartOptions" [Highcharts]="Highcharts" [options]="chartOptions"
                                   style="width: 100%;  display: block;"></highcharts-chart>
             </div>
 

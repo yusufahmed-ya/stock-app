@@ -18,12 +18,7 @@ export class PricesComponent implements OnInit {
   stockPrices: StockPrice[];
 
   Highcharts: typeof Highcharts = Highcharts;
-  chartOptions: Highcharts.Options = {
-    series: [{
-      data: [1, 2, 3],
-      type: 'line'
-    }]
-  };
+  chartOptions: Highcharts.Options;
 
   constructor(private route: ActivatedRoute, private alphaVantageSvc: AlphaVantageService) {
 
@@ -43,9 +38,66 @@ export class PricesComponent implements OnInit {
       .pipe(
         map(res => {
           this.stockPrices = this.mapStockPrices(res);
+          this.buildChart();
           this.loading = false;
         }))
       .subscribe();
+  }
+
+  buildChart(): void {
+
+    const latestStockPrices = this.stockPrices.slice(0, 7);
+
+    const volume = latestStockPrices.map(s => s.volume);
+    const dates = latestStockPrices.map(s => s.date.toDateString());
+    const prices = latestStockPrices.map(s => s.close);
+
+    this.chartOptions = {
+      chart: {
+        zoomType: 'xy'
+      },
+      title: {
+        text: ''
+      },
+      xAxis: [{
+        categories: dates,
+        crosshair: true
+      }],
+      yAxis: [{
+        labels: {
+          format: '${value}'
+        },
+        title: {
+          text: 'Price'
+        }
+      },
+      {
+        title: {
+          text: 'Volume'
+        },
+        labels: {
+          format: '{value}'
+        },
+        opposite: true
+      }],
+      tooltip: {
+        shared: true
+      },
+      series: [{
+        name: 'Volume',
+        type: 'column',
+        yAxis: 1,
+        data: volume
+      },
+      {
+        name: 'Price',
+        type: 'spline',
+        data: prices,
+        tooltip: {
+          valuePrefix: '$'
+        }
+      }]
+    };
   }
 
   mapStockPrices(data: any): StockPrice[] {
@@ -58,11 +110,11 @@ export class PricesComponent implements OnInit {
       if (prices) {
         for (const [key, value] of Object.entries(prices)) {
           const date = key;
-          const open = value['1. open'];
-          const high = value['2. high'];
-          const low = value['3. low'];
-          const close = value['4. close'];
-          const volume = value['5. volume'];
+          const open = parseInt(value['1. open'], 10);
+          const high = parseInt(value['2. high'], 10);
+          const low = parseInt(value['3. low'], 10);
+          const close = parseInt(value['4. close'], 10);
+          const volume = parseInt(value['5. volume'], 10);
 
           res.push({
             date: new Date(date),
@@ -78,5 +130,4 @@ export class PricesComponent implements OnInit {
     console.log(res);
     return res;
   }
-
 }
