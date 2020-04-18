@@ -9,11 +9,11 @@ import { ClarityModule } from '@clr/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { SearchComponent } from './search/search.component';
-import { SpinnerComponent } from './shared/components/spinner/spinner.component';
-import { TitleComponent } from './shared/components/title/title.component';
-import { TileComponent } from './shared/components/tile/tile.component';
+import { PricesComponent } from './prices/prices.component';
 import { CompanyCardComponent } from './shared/components/company-card/company-card.component';
+import { SpinnerComponent } from './shared/components/spinner/spinner.component';
+import { TileComponent } from './shared/components/tile/tile.component';
+import { TitleComponent } from './shared/components/title/title.component';
 
 @NgModule({
   declarations: [
@@ -21,9 +21,9 @@ import { CompanyCardComponent } from './shared/components/company-card/company-c
     HomeComponent,
     TitleComponent,
     SpinnerComponent,
-    SearchComponent,
     TileComponent,
-    CompanyCardComponent
+    CompanyCardComponent,
+    PricesComponent
   ],
   imports: [
     BrowserModule,

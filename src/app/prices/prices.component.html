@@ -1,0 +1,68 @@
+<app-title title="Prices - {{symbol}}"></app-title>
+
+<app-spinner [loading]="loading"></app-spinner>
+
+<div *ngIf="!loading">
+    <div *ngIf="stockPrices && stockPrices.length > 0">
+
+        <app-tile title="Open" [value]="stockPrices[0].open" currency="$" colourClass="brand-blue-two"></app-tile>
+        <app-tile title="High" [value]="stockPrices[0].high" currency="$" colourClass="brand-blue-three"></app-tile>
+        <app-tile title="Low" [value]="stockPrices[0].low" currency="$" colourClass="brand-blue-four"></app-tile>
+        <app-tile title="Close" [value]="stockPrices[0].close" currency="$" colourClass="brand-green-two"></app-tile>
+        <app-tile title="Volume" [value]="stockPrices[0].volume" currency="" colourClass="brand-green-three"></app-tile>
+        <clr-datagrid>
+            <clr-dg-column>
+                <clr-icon shape="calendar" class="header-icon"></clr-icon> Date
+            </clr-dg-column>
+            <clr-dg-column>
+                <clr-icon shape="folder-open" class="header-icon"></clr-icon> Open
+            </clr-dg-column>
+            <clr-dg-column>
+                <clr-icon shape="arrow" class="header-icon"></clr-icon> High
+            </clr-dg-column>
+            <clr-dg-column>
+                <clr-icon shape="arrow down" class="header-icon"></clr-icon> Low
+            </clr-dg-column>
+            <clr-dg-column>
+                <clr-icon shape="times" class="header-icon"></clr-icon> Close
+            </clr-dg-column>
+            <clr-dg-column>
+                <clr-icon shape="container-volume" class="header-icon"></clr-icon> Volume
+            </clr-dg-column>
+
+
+            <clr-dg-row *clrDgItems="let sp of stockPrices" [clrDgItem]="sp">
+                <clr-dg-cell>{{sp.date | date:'mediumDate'}} {{sp.date | date:'shortTime'}}</clr-dg-cell>
+                <clr-dg-cell>{{sp.open | number}}</clr-dg-cell>
+                <clr-dg-cell>{{sp.high | number}}</clr-dg-cell>
+                <clr-dg-cell>{{sp.low | number}}</clr-dg-cell>
+                <clr-dg-cell>{{sp.close | number}}</clr-dg-cell>
+                <clr-dg-cell>{{sp.volume | number}}</clr-dg-cell>
+
+            </clr-dg-row>
+            <clr-dg-footer>
+                <clr-dg-pagination #pagination [clrDgPageSize]="10">
+                    <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Prices per page</clr-dg-page-size>
+                    {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                    of {{pagination.totalItems}} Prices
+                </clr-dg-pagination>
+            </clr-dg-footer>
+        </clr-datagrid>
+    </div>
+
+    <div *ngIf="stockPrices.length === 0" class="alert alert-danger">
+        <div class="alert-items">
+            <div class="alert-item static" role="alert">
+                <div class="alert-icon-wrapper">
+                    <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                </div>
+                <span class="alert-text">
+                    We do not have any prices for this stock ({{symbol}}).
+                </span>
+            </div>
+        </div>
+        <button type="button" class="close" aria-label="Close">
+            <clr-icon aria-hidden="true" shape="close"></clr-icon>
+        </button>
+    </div>
+</div>
