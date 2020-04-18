@@ -55,7 +55,8 @@ export class PricesComponent implements OnInit {
 
     this.chartOptions = {
       chart: {
-        zoomType: 'xy'
+        zoomType: 'xy',
+        backgroundColor: 'transparent'
       },
       title: {
         text: ''
