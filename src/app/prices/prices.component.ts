@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import * as Highcharts from 'highcharts';
 import { map } from 'rxjs/operators';
 
 import { StockPrice } from '../shared/models/stock-price';
@@ -15,6 +16,14 @@ export class PricesComponent implements OnInit {
   loading = true;
   symbol: string;
   stockPrices: StockPrice[];
+
+  Highcharts: typeof Highcharts = Highcharts;
+  chartOptions: Highcharts.Options = {
+    series: [{
+      data: [1, 2, 3],
+      type: 'line'
+    }]
+  };
 
   constructor(private route: ActivatedRoute, private alphaVantageSvc: AlphaVantageService) {
 

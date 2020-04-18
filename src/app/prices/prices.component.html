@@ -6,7 +6,7 @@
     <div *ngIf="stockPrices && stockPrices.length > 0">
 
         <div class="clr-row">
-            <div class="clr-col">
+            <div class="clr-col-2">
                 <app-tile title="Open" [value]="stockPrices[0].open" currency="$" colourClass="brand-blue-two">
                 </app-tile>
                 <app-tile title="High" [value]="stockPrices[0].high" currency="$" colourClass="brand-blue-three">
@@ -18,8 +18,9 @@
                 <app-tile title="Volume" [value]="stockPrices[0].volume" currency="" colourClass="brand-green-three">
                 </app-tile>
             </div>
-            <div class="clr-col">
-                chart goes in here
+            <div class="clr-col-10">
+                <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions"
+                                  style="width: 100%;  display: block;"></highcharts-chart>
             </div>
 
         </div>
