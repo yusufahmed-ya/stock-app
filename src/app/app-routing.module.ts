@@ -16,6 +16,10 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
+    path: 'home/:searchInput',
+    component: HomeComponent
+  },
+  {
     path: 'prices/:symbol',
     component: PricesComponent,
   }

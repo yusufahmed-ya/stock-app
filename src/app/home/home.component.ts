@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 
 import { Company } from '../shared/models/company';
@@ -15,24 +16,33 @@ export class HomeComponent implements OnInit {
   searchForm: FormGroup;
   loading = false;
   companies: Company[];
-  searchCompanies = '';
+  searchInput: string;
 
-  constructor(private alphaVantageSvc: AlphaVantageService) {
+  constructor(private alphaVantageSvc: AlphaVantageService, private activatedRoute: ActivatedRoute, private router: Router) {
 
   }
 
   ngOnInit(): void {
-    this.searchForm = new FormGroup({
-      companiesCtrl: new FormControl('')
+    this.activatedRoute.paramMap.subscribe(params => {
+      this.searchInput = params.get('searchInput');
+      this.searchForm = new FormGroup({
+        companiesCtrl: new FormControl(this.searchInput ? this.searchInput : '')
+      });
+      this.getCompanies(this.searchInput);
     });
   }
 
   onChangeSearchCompanies(event) {
     this.companies = null;
-    this.searchCompanies = event.currentTarget.value;
+    this.searchInput = event.currentTarget.value;
+    this.getCompanies(this.searchInput);
+    this.router.navigate(['home', this.searchInput]);
+  }
+
+  getCompanies(searchInput: string): void {
     this.loading = true;
     this.alphaVantageSvc
-      .getCompanies(this.searchCompanies)
+      .getCompanies(searchInput)
       .pipe(
         map(res => {
           this.companies = this.mapCompanies(res);
