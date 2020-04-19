@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
-import { PricesComponent } from './prices/prices.component';
+import { PricesComponent } from './shared/components/prices/prices.component';
 
 
 const routes: Routes = [
@@ -20,7 +20,7 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'prices/:symbol',
+    path: 'home/prices/:symbol',
     component: PricesComponent,
   }
 ];

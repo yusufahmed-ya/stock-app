@@ -15,12 +15,21 @@
                 </app-tile>
                 <app-tile title="Close" [value]="stockPrices[0].close" currency="$" colourClass="brand-green-two">
                 </app-tile>
-                <app-tile title="Volume" [value]="stockPrices[0].volume" currency="" colourClass="brand-green-three">
+                <app-tile title="Volume" [value]="stockPrices[0].volume" colourClass="brand-green-three">
                 </app-tile>
             </div>
             <div class="clr-col-10">
                 <highcharts-chart *ngIf="chartOptions" [Highcharts]="Highcharts" [options]="chartOptions"
                                   style="width: 100%;  display: block;"></highcharts-chart>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-sm time-frame" [class.btn-primary]="days === 7"
+                        (click)="onClickTimeframe(7)">7D</button>
+                <button class="btn btn-sm time-frame" [class.btn-primary]="days === 30"
+                        (click)="onClickTimeframe(30)">30D</button>
+                <button class="btn btn-sm time-frame" [class.btn-primary]="days === 90"
+                        (click)="onClickTimeframe(90)">90D</button>
             </div>
 
         </div>

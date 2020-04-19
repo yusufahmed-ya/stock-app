@@ -5,8 +5,8 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import { map } from 'rxjs/operators';
 
-import { StockPrice } from '../shared/models/stock-price';
-import { AlphaVantageService } from '../shared/services/alpha-vantage.service';
+import { StockPrice } from '../../models/stock-price';
+import { AlphaVantageService } from '../../services/alpha-vantage.service';
 
 @Component({
   selector: 'app-prices',
@@ -21,6 +21,7 @@ export class PricesComponent implements OnInit {
 
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions: Highcharts.Options;
+  days = 30;
 
   constructor(private route: ActivatedRoute, private alphaVantageSvc: AlphaVantageService) {
 
@@ -40,15 +41,20 @@ export class PricesComponent implements OnInit {
       .pipe(
         map(res => {
           this.stockPrices = _.orderBy(this.mapStockPrices(res), 'date', 'desc');
-          this.buildChart();
+          this.buildChart(this.days);
           this.loading = false;
         }))
       .subscribe();
   }
 
-  buildChart(): void {
+  onClickTimeframe(days: number) {
+    this.days = days;
+    this.buildChart(days);
+  }
 
-    const latestStockPrices = _.orderBy(_.take(this.stockPrices, 30), 'date', 'asc');
+  buildChart(days: number): void {
+
+    const latestStockPrices = _.orderBy(_.take(this.stockPrices, days), 'date', 'asc');
 
     const volume = latestStockPrices.map(s => s.volume);
     const dates = latestStockPrices.map(s => moment(s.date).format('DD-MMM-YYYY'));
@@ -130,7 +136,6 @@ export class PricesComponent implements OnInit {
         }
       }
     }
-    console.log(res);
     return res;
   }
 }
