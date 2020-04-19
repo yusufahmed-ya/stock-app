@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as Highcharts from 'highcharts';
+import * as _ from 'lodash';
 import * as moment from 'moment';
 import { map } from 'rxjs/operators';
 
@@ -38,7 +39,7 @@ export class PricesComponent implements OnInit {
       .getInstruments(symbol)
       .pipe(
         map(res => {
-          this.stockPrices = this.mapStockPrices(res);
+          this.stockPrices = _.orderBy(this.mapStockPrices(res), 'date', 'desc');
           this.buildChart();
           this.loading = false;
         }))
@@ -47,7 +48,7 @@ export class PricesComponent implements OnInit {
 
   buildChart(): void {
 
-    const latestStockPrices = this.stockPrices.slice(0, 30);
+    const latestStockPrices = _.orderBy(_.take(this.stockPrices, 30), 'date', 'asc');
 
     const volume = latestStockPrices.map(s => s.volume);
     const dates = latestStockPrices.map(s => moment(s.date).format('DD-MMM-YYYY'));
