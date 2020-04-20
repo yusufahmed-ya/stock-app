@@ -5,6 +5,7 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import { map } from 'rxjs/operators';
 
+import { IntradayPrice } from '../../models/intraday-price';
 import { StockPrice } from '../../models/stock-price';
 import { AlphaVantageService } from '../../services/alpha-vantage.service';
 
@@ -18,6 +19,7 @@ export class PricesComponent implements OnInit {
   loading = true;
   symbol: string;
   stockPrices: StockPrice[];
+  intradyStockPrices: IntradayPrice[];
 
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions: Highcharts.Options;
@@ -31,7 +33,9 @@ export class PricesComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.symbol = params.get('symbol');
       this.getStockPrices(this.symbol);
+      this.getIntradayPrices(this.symbol);
     });
+
   }
 
   getStockPrices(symbol: string): void {
@@ -45,6 +49,19 @@ export class PricesComponent implements OnInit {
           this.loading = false;
         }))
       .subscribe();
+  }
+
+  getIntradayPrices(symbol: string): void {
+    this.intradyStockPrices = null;
+    this.alphaVantageSvc
+      .getInstruments(symbol)
+      .pipe(
+        map(res => {
+          this.intradyStockPrices = this.mapIntradayPrices(res);
+          this.loading = false;
+        }))
+      .subscribe();
+
   }
 
   onClickTimeframe(days: number) {
@@ -138,4 +155,38 @@ export class PricesComponent implements OnInit {
     }
     return res;
   }
+
+  mapIntradayPrices(data: any): IntradayPrice[] {
+
+    const res = new Array<IntradayPrice>();
+
+    if (data) {
+      const prices = data['Time Series (5min)'];
+
+      if (prices) {
+
+        for (const [key, value] of Object.entries(prices)) {
+
+          const date = new Date(key);
+
+          const open = parseInt(value['1. open'], 10);
+          const high = parseInt(value['2. high'], 10);
+          const low = parseInt(value['3. low'], 10);
+          const close = parseInt(value['4. close'], 10);
+          const volume = parseInt(value['5. volume'], 10);
+
+          res.push({
+            date,
+            open,
+            high,
+            low,
+            close,
+            volume
+          } as IntradayPrice);
+        }
+      }
+      return res;
+    }
+  }
+
 }

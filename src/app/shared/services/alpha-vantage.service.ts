@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AlphaVantageService {
+  [x: string]: any;
 
   constructor(private http: HttpClient) { }
 
@@ -18,5 +19,8 @@ export class AlphaVantageService {
 
   getCompanies(companyName: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.rootUrl}?function=SYMBOL_SEARCH&keywords=${companyName}&apikey=${environment.alphaVantageApiKey}`);
+  }
+  getIntradayPrices(symbol: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.rootUrl}?function=TIME_SERIES_INTRADAY&symbol=${symbol}&apikey=${environment.alphaVantageApiKey}`);
   }
 }

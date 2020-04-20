@@ -15,6 +15,7 @@ import { PricesComponent } from './shared/components/prices/prices.component';
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 import { TileComponent } from './shared/components/tile/tile.component';
 import { TitleComponent } from './shared/components/title/title.component';
+import { IntradayPricesComponent } from './shared/components/intraday-prices/intraday-prices.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { TitleComponent } from './shared/components/title/title.component';
     SpinnerComponent,
     TileComponent,
     CompanyCardComponent,
-    PricesComponent
+    PricesComponent,
+    IntradayPricesComponent
   ],
   imports: [
     BrowserModule,

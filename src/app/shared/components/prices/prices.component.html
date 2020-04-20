@@ -24,6 +24,8 @@
             </div>
 
             <div class="btn-group">
+                <button class="btn btn-sm time-frame" [class.btn-primary]="days === 90"
+                        (click)="onClickTimeframe(90)">Intraday Prices</button>
                 <button class="btn btn-sm time-frame" [class.btn-primary]="days === 7"
                         (click)="onClickTimeframe(7)">7D</button>
                 <button class="btn btn-sm time-frame" [class.btn-primary]="days === 30"
