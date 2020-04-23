@@ -36,13 +36,21 @@
 
         </div>
         <clr-datagrid>
-            <clr-dg-column>Date</clr-dg-column>
+            <clr-dg-column>Date<clr-tabs>
+                    <clr-tab cla>
+                        <button clrTabLink>Past </button>
+                    </clr-tab>
+
+                    <clr-tab>
+                        <button clrTabLink>Intraday</button>
+                    </clr-tab>
+                </clr-tabs>
+            </clr-dg-column>
             <clr-dg-column>Open</clr-dg-column>
             <clr-dg-column>High</clr-dg-column>
             <clr-dg-column>Low</clr-dg-column>
             <clr-dg-column>Close</clr-dg-column>
             <clr-dg-column>Volume</clr-dg-column>
-
 
             <clr-dg-row *clrDgItems="let sp of stockPrices" [clrDgItem]="sp">
                 <clr-dg-cell>{{sp.date | date:'mediumDate'}} {{sp.date | date:'shortTime'}}</clr-dg-cell>
@@ -63,7 +71,11 @@
         </clr-datagrid>
     </div>
 
-    <div *ngIf="stockPrices.length === 0" class="alert alert-danger">
+    <div *ngIf="intradayStockPrices && intradayStockPrices.length > 0">
+        <app-intraday-prices [prices]="intradayStockPrices"></app-intraday-prices>
+    </div>
+
+    <div *ngIf="!stockPrices || stockPrices.length === 0" class="alert alert-danger">
         <div class="alert-items">
             <div class="alert-item static" role="alert">
                 <div class="alert-icon-wrapper">

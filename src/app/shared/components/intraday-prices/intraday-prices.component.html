@@ -1,0 +1,26 @@
+<clr-datagrid>
+    <clr-dg-column>Date</clr-dg-column>
+    <clr-dg-column>Open</clr-dg-column>
+    <clr-dg-column>High</clr-dg-column>
+    <clr-dg-column>Low</clr-dg-column>
+    <clr-dg-column>Close</clr-dg-column>
+    <clr-dg-column>Volume</clr-dg-column>
+
+    <clr-dg-row *clrDgItems="let intra of prices" [clrDgItem]="intra">
+
+        <clr-dg-cell>{{intra.date | date:'mediumDate'}} {{intra.date | date:'shortTime'}}</clr-dg-cell>
+        <clr-dg-cell>{{intra.open | number}}</clr-dg-cell>
+        <clr-dg-cell>{{intra.high | number}}</clr-dg-cell>
+        <clr-dg-cell>{{intra.low | number}}</clr-dg-cell>
+        <clr-dg-cell>{{intra.close | number}}</clr-dg-cell>
+        <clr-dg-cell>{{intra.volume | number}}</clr-dg-cell>
+
+    </clr-dg-row>
+    <clr-dg-footer>
+        <clr-dg-pagination #pagination [clrDgPageSize]="10">
+            <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Prices per page</clr-dg-page-size>
+            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+            of {{pagination.totalItems}} Prices
+        </clr-dg-pagination>
+    </clr-dg-footer>
+</clr-datagrid>

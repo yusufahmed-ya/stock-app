@@ -19,7 +19,7 @@ export class PricesComponent implements OnInit {
   loading = true;
   symbol: string;
   stockPrices: StockPrice[];
-  intradyStockPrices: IntradayPrice[];
+  intradayStockPrices: IntradayPrice[];
 
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions: Highcharts.Options;
@@ -52,12 +52,12 @@ export class PricesComponent implements OnInit {
   }
 
   getIntradayPrices(symbol: string): void {
-    this.intradyStockPrices = null;
+    this.intradayStockPrices = null;
     this.alphaVantageSvc
-      .getInstruments(symbol)
+      .getIntradayPrices(symbol)
       .pipe(
         map(res => {
-          this.intradyStockPrices = this.mapIntradayPrices(res);
+          this.intradayStockPrices = this.mapIntradayPrices(res);
           this.loading = false;
         }))
       .subscribe();
@@ -167,7 +167,7 @@ export class PricesComponent implements OnInit {
 
         for (const [key, value] of Object.entries(prices)) {
 
-          const date = new Date(key);
+          const date = key;
 
           const open = parseInt(value['1. open'], 10);
           const high = parseInt(value['2. high'], 10);
@@ -176,7 +176,7 @@ export class PricesComponent implements OnInit {
           const volume = parseInt(value['5. volume'], 10);
 
           res.push({
-            date,
+            date: new Date(date),
             open,
             high,
             low,
