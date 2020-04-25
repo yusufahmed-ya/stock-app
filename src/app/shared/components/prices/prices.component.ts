@@ -109,6 +109,9 @@ export class PricesComponent implements OnInit {
       tooltip: {
         shared: true
       },
+      credits: {
+        enabled: false
+      },
       series: [{
         name: 'Volume',
         type: 'column',
