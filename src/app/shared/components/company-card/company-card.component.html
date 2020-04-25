@@ -1,6 +1,6 @@
 <div *ngIf="company">
     <div class="company-card">
-        <div class="name">
+        <div class="name" [attr.title]="company.name">
             {{company.name}}
         </div>
         <div class="symbol">

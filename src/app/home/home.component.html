@@ -3,7 +3,7 @@
 <div class="search-companies">
     <form clrForm [formGroup]="searchForm" class="search-tickers">
         <clr-input-container>
-            <label>Search using company name</label>
+            <label>Company:</label>
             <input clrInput type="text" formControlName="companiesCtrl" (change)="onChangeSearchCompanies($event)" />
         </clr-input-container>
     </form>
@@ -15,7 +15,7 @@
     <div *ngIf="companies">
 
         <div class="clr-row">
-            <div *ngFor="let c of companies" class="clr-col-4">
+            <div *ngFor="let c of companies" class="clr-col-xl-4">
                 <app-company-card [company]="c"></app-company-card>
             </div>
         </div>
