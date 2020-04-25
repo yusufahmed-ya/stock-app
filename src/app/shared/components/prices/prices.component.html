@@ -20,7 +20,7 @@
         </button>
     </div>
     <div class="clr-row" *ngIf="stockPrices && stockPrices.length > 0">
-        <div class="clr-col-2">
+        <div class="clr-col-md-2">
             <app-tile title="Open" [value]="stockPrices[0].open" currency="$" colourClass="brand-blue-two">
             </app-tile>
             <app-tile title="High" [value]="stockPrices[0].high" currency="$" colourClass="brand-blue-three">
@@ -32,7 +32,7 @@
             <app-tile title="Volume" [value]="stockPrices[0].volume" colourClass="brand-green-three">
             </app-tile>
         </div>
-        <div class="clr-col-10">
+        <div class="clr-col-md-10">
             <highcharts-chart *ngIf="chartOptions" [Highcharts]="Highcharts" [options]="chartOptions"
                               style="width: 100%;  display: block;"></highcharts-chart>
         </div>
