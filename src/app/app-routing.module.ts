@@ -8,7 +8,7 @@ import { PricesComponent } from './shared/components/prices/prices.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'home/google',
     pathMatch: 'full'
   },
   {

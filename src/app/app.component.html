@@ -9,7 +9,7 @@
 
     <div class="content-container">
         <clr-vertical-nav [clrVerticalNavCollapsible]="true" [clrVerticalNavCollapsed]="true">
-            <a clrVerticalNavLink routerLink="./home" routerLinkActive="active">
+            <a clrVerticalNavLink [routerLink]="['./home', 'google']" routerLinkActive="active">
                 <clr-icon clrVerticalNavIcon shape="home"></clr-icon>
                 Home
             </a>
