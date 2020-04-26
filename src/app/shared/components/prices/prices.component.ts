@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import * as Highcharts from 'highcharts';
 import * as _ from 'lodash';
 import * as moment from 'moment';
+import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { IntradayPrice } from '../../models/intraday-price';
@@ -32,36 +33,33 @@ export class PricesComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.symbol = params.get('symbol');
-      this.getStockPrices(this.symbol);
-      this.getIntradayPrices(this.symbol);
+      this.getPrices(this.symbol);
     });
 
   }
 
-  getStockPrices(symbol: string): void {
+  getPrices(symbol: string): void {
     this.stockPrices = null;
-    this.alphaVantageSvc
-      .getInstruments(symbol)
+    this.intradayStockPrices = null;
+
+    const getInstruments = this.alphaVantageSvc.getInstruments(symbol);
+    const getIntradayPrices = this.alphaVantageSvc.getIntradayPrices(symbol);
+
+    forkJoin([getInstruments, getIntradayPrices])
       .pipe(
         map(res => {
-          this.stockPrices = _.orderBy(this.mapStockPrices(res), 'date', 'desc');
+          this.stockPrices = _.orderBy(this.mapStockPrices(res[0]), 'date', 'desc');
+          this.intradayStockPrices = this.mapIntradayPrices(res[1]);
           this.buildChart(this.days);
           this.loading = false;
-        }))
-      .subscribe();
-  }
-
-  getIntradayPrices(symbol: string): void {
-    this.intradayStockPrices = null;
-    this.alphaVantageSvc
-      .getIntradayPrices(symbol)
-      .pipe(
-        map(res => {
-          this.intradayStockPrices = this.mapIntradayPrices(res);
-          this.loading = false;
-        }))
-      .subscribe();
-
+        })
+      )
+      .subscribe(() => {
+        this.loading = false;
+      },
+        error => {
+        }
+      );
   }
 
   onClickTimeframe(days: number) {
