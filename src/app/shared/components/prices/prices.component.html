@@ -20,7 +20,7 @@
         </button>
     </div>
     <div class="clr-row" *ngIf="stockPrices && stockPrices.length > 0">
-        <div class="clr-col-md-2">
+        <div class="clr-col-md-1 clr-col-12">
             <app-tile title="Open" [value]="stockPrices[0].open" currency="$" colourClass="brand-blue-two">
             </app-tile>
             <app-tile title="High" [value]="stockPrices[0].high" currency="$" colourClass="brand-blue-three">
