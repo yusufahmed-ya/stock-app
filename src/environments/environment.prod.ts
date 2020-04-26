@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  alphaVantageApiKey: 'F319WEUDC0PATP0V'
 };
