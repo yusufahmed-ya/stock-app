@@ -11,11 +11,29 @@
 
   <body>
     <app-root></app-root>
-    <script src="/__/firebase/7.14.2/firebase-app.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-app.js"></script>
 
-    <script src="/__/firebase/7.14.2/firebase-analytics.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-analytics.js"></script>
 
-    <script src="/__/firebase/init.js"></script>
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyApaFN-2yghJQTBIvLbQdcX5V8hbPtOll8",
+        authDomain: "nebula-fd7a4.firebaseapp.com",
+        databaseURL: "https://nebula-fd7a4.firebaseio.com",
+        projectId: "nebula-fd7a4",
+        storageBucket: "nebula-fd7a4.appspot.com",
+        messagingSenderId: "242767504711",
+        appId: "1:242767504711:web:26ece7ded1df9fa7629862",
+        measurementId: "G-NH4B04D520"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
   </body>
 
 </html>
